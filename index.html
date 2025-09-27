@@ -30,11 +30,7 @@
             align-items: center;
             min-height: 100vh;
             color: var(--text-color);
-            padding: 20px;
-            /* ======================================================================
-            مهم: برای تغییر بکگراند، آدرس عکس خودت رو اینجا جایگزین کن
-            ====================================================================== */
-            /* آدرس دهی مستقیم به فایل عکس در کنار index.html */
+            /* padding: 20px; */ /* حذف شد تا لبه به لبه صفحه باشه */
             background-image: linear-gradient(rgba(44, 0, 78, 0.8), rgba(15, 32, 39, 0.9)), url('1758871477103 copy.jpg'); 
             background-size: cover;
             background-position: center;
@@ -65,12 +61,11 @@
         /* --- Intro Card Styles --- */
         #intro-card {
             width: 100%;
-            max-width: 380px;
+            max-width: 380px; /* این max-width در حالت دسکتاپ یا تبلت اعمال میشه */
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             
-            /* Glassmorphism Effect */
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -82,7 +77,7 @@
         }
 
         #intro-card h2 {
-            font-size: 2rem; /* اندازه فونت عادی */
+            font-size: 2rem;
             font-weight: 700;
             margin-bottom: 15px;
             text-shadow: 0 0 10px var(--green);
@@ -110,6 +105,9 @@
             transform: scale(0.95);
             transition: opacity 0.5s ease-in 0.3s, transform 0.5s ease-in 0.3s;
             pointer-events: none;
+            width: 100%; /* کل عرض رو بگیره */
+            height: 100%; /* کل ارتفاع رو بگیره */
+            justify-content: center; /* وسط چین کردن محتوا */
         }
 
         #player-wrapper.visible {
@@ -138,7 +136,7 @@
 
         .music-player {
             width: 100%;
-            max-width: 380px;
+            max-width: 380px; /* این max-width در حالت دسکتاپ یا تبلت اعمال میشه */
             padding: 25px 30px;
             border-radius: 20px;
             background: var(--glass-bg);
@@ -149,14 +147,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: float 6s ease-in-out infinite;
+            /* animation: float 6s ease-in-out infinite; */ /* انیمیشن float حذف شد */
         }
         
-        @keyframes float {
+        /* @keyframes float { 
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
-        }
+        } */
 
         .album-art {
             width: 200px;
@@ -180,90 +178,60 @@
         .footer-text {
             position: fixed;
             bottom: 20px;
-            /* برای اینکه متن در وسط صفحه قرار بگیره */
             left: 50%; 
             transform: translateX(-50%); 
             font-size: 0.9rem;
             font-weight: 300;
             opacity: 0.6;
-            z-index: 1000; /* مطمئن میشیم روی همه چیز قرار بگیره */
+            z-index: 1000;
         }
         
         /* === Media Queries for Responsiveness === */
         
-        /* Styles for screens smaller than 768px (typical tablets and phones) */
+        /* Styles for screens smaller than 768px */
         @media (max-width: 768px) {
             #intro-card, .music-player {
-                max-width: 90vw; /* Max width 90% of viewport width */
-                padding: 30px; /* Slightly reduced padding */
+                width: 100%; /* Use full width */
+                max-width: none; /* Remove max-width */
+                padding: 30px 15px; /* Reduced horizontal padding, keep some vertical */
+                border-radius: 0; /* Remove border-radius to fit screen edge */
             }
-            .header h1 {
-                font-size: 2.5rem; /* Smaller heading for smaller screens */
-            }
-            #intro-card h2 {
-                font-size: 1.8rem; /* Smaller intro card title */
-            }
-            .album-art {
-                width: 180px; /* Smaller album art */
-                height: 180px;
-            }
-            .play-pause-btn {
-                width: 60px; /* Smaller play/pause button */
-                height: 60px;
-            }
-            .play-pause-btn svg {
-                width: 25px; /* Smaller icon inside button */
-                height: 25px;
-            }
+             /* Center the content within the full-width elements */
+            #intro-card { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+            .music-player { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+            .header h1 { font-size: 2.5rem; }
+            #intro-card h2 { font-size: 1.8rem; }
+            .album-art { width: 180px; height: 180px; }
+            .play-pause-btn { width: 60px; height: 60px; }
+            .play-pause-btn svg { width: 25px; height: 25px; }
         }
 
-        /* Styles for screens smaller than 480px (smaller phones) */
+        /* Styles for screens smaller than 480px */
         @media (max-width: 480px) {
             #intro-card, .music-player {
-                padding: 20px; /* Further reduced padding for very small screens */
+                padding: 20px 10px; /* Even less padding */
             }
-            .header h1 {
-                font-size: 2rem; /* Even smaller heading */
-            }
-            #intro-card h2 {
-                font-size: 1.6rem; /* Even smaller intro card title */
-            }
-            .album-art {
-                width: 150px; /* Even smaller album art */
-                height: 150px;
-            }
-            .song-title {
-                font-size: 1.3rem; /* Smaller song title */
-            }
-            .time-display {
-                font-size: 0.7rem; /* Smaller time display */
-            }
-            .play-pause-btn {
-                width: 50px; /* Smallest play/pause button */
-                height: 50px;
-            }
-            .play-pause-btn svg {
-                width: 20px; /* Smallest icon */
-                height: 20px;
-            }
-            .footer-text {
-                font-size: 0.8rem; /* Smaller footer text */
-            }
+            .header h1 { font-size: 2rem; }
+            #intro-card h2 { font-size: 1.6rem; }
+            .album-art { width: 150px; height: 150px; }
+            .song-title { font-size: 1.3rem; }
+            .time-display { font-size: 0.7rem; }
+            .play-pause-btn { width: 50px; height: 50px; }
+            .play-pause-btn svg { width: 20px; height: 20px; }
+            .footer-text { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- آدرس دهی مستقیم به فایل موزیک در کنار index.html -->
     <audio id="audio-source" src="Male Man Bash.mp3"></audio> 
     
-    <!-- The Intro Card (Initially Visible) -->
     <div id="intro-card">
         <h2>تقدیم با عشق</h2>
         <p>💜Click Here💚</p>
     </div>
 
-    <!-- The Music Player (Initially Hidden) -->
     <div id="player-wrapper">
         <div class="header">
             <h1>💚Happy Birthday Yasaman💚</h1>
@@ -271,7 +239,6 @@
         </div>
 
         <div class="music-player">
-            <!-- آدرس دهی مستقیم به فایل کاور موزیک در کنار index.html -->
             <img src="Male Man Bash.jpg" alt="Album Art" class="album-art"> 
             <h2 class="song-title">Male Man Bash</h2>
             <div class="progress-container" id="progress-container">
@@ -288,11 +255,8 @@
                 </div>
             </div>
         </div>
-        <!-- این قسمت رو از اینجا حذف کردم -->
-        <!-- <p class="footer-text">From Omid</p> -->
     </div>
     
-    <!-- و به اینجا منتقلش کردم، خارج از player-wrapper -->
     <p class="footer-text">From Omid</p>
 
     <script>
@@ -302,19 +266,13 @@
             const audio = document.getElementById('audio-source');
 
             introCard.addEventListener('click', () => {
-                // Hide the intro card
                 introCard.classList.add('hidden');
-                
-                // Show the player wrapper after a short delay for a smooth transition
                 setTimeout(() => {
                     playerWrapper.classList.add('visible');
-                    // Automatically play music after opening
                     audio.play();
-                }, 100); // A small delay to ensure the animations flow nicely
+                }, 100);
             });
 
-
-            // --- Music Player Logic ---
             const playPauseBtn = document.getElementById('play-pause-btn');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
