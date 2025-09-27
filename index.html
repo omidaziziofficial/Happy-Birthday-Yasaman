@@ -82,7 +82,7 @@
         }
 
         #intro-card h2 {
-            font-size: 2rem;
+            font-size: 2rem; /* اندازه فونت عادی */
             font-weight: 700;
             margin-bottom: 15px;
             text-shadow: 0 0 10px var(--green);
@@ -189,9 +189,66 @@
             z-index: 1000; /* مطمئن میشیم روی همه چیز قرار بگیره */
         }
         
+        /* === Media Queries for Responsiveness === */
+        
+        /* Styles for screens smaller than 768px (typical tablets and phones) */
+        @media (max-width: 768px) {
+            #intro-card, .music-player {
+                max-width: 90vw; /* Max width 90% of viewport width */
+                padding: 30px; /* Slightly reduced padding */
+            }
+            .header h1 {
+                font-size: 2.5rem; /* Smaller heading for smaller screens */
+            }
+            #intro-card h2 {
+                font-size: 1.8rem; /* Smaller intro card title */
+            }
+            .album-art {
+                width: 180px; /* Smaller album art */
+                height: 180px;
+            }
+            .play-pause-btn {
+                width: 60px; /* Smaller play/pause button */
+                height: 60px;
+            }
+            .play-pause-btn svg {
+                width: 25px; /* Smaller icon inside button */
+                height: 25px;
+            }
+        }
+
+        /* Styles for screens smaller than 480px (smaller phones) */
         @media (max-width: 480px) {
-            .header h1 { font-size: 2rem; }
-            #intro-card, .music-player { max-width: 90vw; }
+            #intro-card, .music-player {
+                padding: 20px; /* Further reduced padding for very small screens */
+            }
+            .header h1 {
+                font-size: 2rem; /* Even smaller heading */
+            }
+            #intro-card h2 {
+                font-size: 1.6rem; /* Even smaller intro card title */
+            }
+            .album-art {
+                width: 150px; /* Even smaller album art */
+                height: 150px;
+            }
+            .song-title {
+                font-size: 1.3rem; /* Smaller song title */
+            }
+            .time-display {
+                font-size: 0.7rem; /* Smaller time display */
+            }
+            .play-pause-btn {
+                width: 50px; /* Smallest play/pause button */
+                height: 50px;
+            }
+            .play-pause-btn svg {
+                width: 20px; /* Smallest icon */
+                height: 20px;
+            }
+            .footer-text {
+                font-size: 0.8rem; /* Smaller footer text */
+            }
         }
     </style>
 </head>
