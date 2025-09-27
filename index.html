@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💚Happy Birthday Yasaman💚</title>
+    
+    <!-- Import Metropolis Font -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=metropolis@700,300&display=swap">
+
+    <style>
+        :root {
+            --purple: #5e35b1;
+            --green: #00ff9d; /* رنگ سبز رو به سبز روشن‌تر و پررنگ‌تر تغییر دادم برای جلوه بیشتر */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Metropolis', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            padding: 20px;
+            /* ======================================================================
+            مهم: برای تغییر بکگراند، آدرس عکس خودت رو اینجا جایگزین کن
+            ====================================================================== */
+            /* آدرس دهی مستقیم به فایل عکس در کنار index.html */
+            background-image: linear-gradient(rgba(44, 0, 78, 0.8), rgba(15, 32, 39, 0.9)), url('1758871477103 copy.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(118, 75, 162, 0.1), transparent 40%),
+                        radial-gradient(circle at 20% 20%, rgba(0, 255, 157, 0.1), transparent 30%),
+                        radial-gradient(circle at 80% 90%, rgba(94, 53, 177, 0.15), transparent 35%);
+            animation: subtle-gradient-move 30s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes subtle-gradient-move {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Intro Card Styles --- */
+        #intro-card {
+            width: 100%;
+            max-width: 380px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            
+            /* Glassmorphism Effect */
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            
+            cursor: pointer;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        #intro-card h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--green);
+        }
+
+        #intro-card p {
+            font-weight: 300;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        #intro-card.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        
+        /* --- Player Styles --- */
+        #player-wrapper {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.5s ease-in 0.3s, transform 0.5s ease-in 0.3s;
+            pointer-events: none;
+        }
+
+        #player-wrapper.visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            text-shadow: 0 0 15px var(--green);
+        }
+
+        .header p {
+            font-weight: 300;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .music-player {
+            width: 100%;
+            max-width: 380px;
+            padding: 25px 30px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .album-art {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            object-fit: cover;
+        }
+        
+        .song-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+        .progress-container { width: 100%; height: 6px; background-color: rgba(255, 255, 255, 0.2); border-radius: 3px; cursor: pointer; margin-bottom: 10px; }
+        .progress-bar { width: 0%; height: 100%; background-color: var(--green); border-radius: 3px; transition: width 0.1s linear; }
+        .time-display { width: 100%; display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 300; opacity: 0.7; margin-bottom: 20px; }
+        .controls { display: flex; justify-content: center; align-items: center; }
+        .play-pause-btn { width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); }
+        .play-pause-btn:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.25); }
+        .play-pause-btn svg { width: 30px; height: 30px; fill: var(--text-color); }
+        #pause-icon { display: none; }
+
+        .footer-text {
+            position: fixed;
+            bottom: 20px;
+            /* برای اینکه متن در وسط صفحه قرار بگیره */
+            left: 50%; 
+            transform: translateX(-50%); 
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.6;
+            z-index: 1000; /* مطمئن میشیم روی همه چیز قرار بگیره */
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 { font-size: 2rem; }
+            #intro-card, .music-player { max-width: 90vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- آدرس دهی مستقیم به فایل موزیک در کنار index.html -->
+    <audio id="audio-source" src="Male Man Bash.mp3"></audio> 
+    
+    <!-- The Intro Card (Initially Visible) -->
+    <div id="intro-card">
+        <h2>تقدیم با عشق</h2>
+        <p>💜Click Here💚</p>
+    </div>
+
+    <!-- The Music Player (Initially Hidden) -->
+    <div id="player-wrapper">
+        <div class="header">
+            <h1>💚Happy Birthday Yasaman💚</h1>
+            <p>I Love You 15243</p>
+        </div>
+
+        <div class="music-player">
+            <!-- آدرس دهی مستقیم به فایل کاور موزیک در کنار index.html -->
+            <img src="Male Man Bash.jpg" alt="Album Art" class="album-art"> 
+            <h2 class="song-title">Male Man Bash</h2>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="time-display">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+            <div class="controls">
+                <div class="play-pause-btn" id="play-pause-btn">
+                    <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                </div>
+            </div>
+        </div>
+        <!-- این قسمت رو از اینجا حذف کردم -->
+        <!-- <p class="footer-text">From Omid</p> -->
+    </div>
+    
+    <!-- و به اینجا منتقلش کردم، خارج از player-wrapper -->
+    <p class="footer-text">From Omid</p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const introCard = document.getElementById('intro-card');
+            const playerWrapper = document.getElementById('player-wrapper');
+            const audio = document.getElementById('audio-source');
+
+            introCard.addEventListener('click', () => {
+                // Hide the intro card
+                introCard.classList.add('hidden');
+                
+                // Show the player wrapper after a short delay for a smooth transition
+                setTimeout(() => {
+                    playerWrapper.classList.add('visible');
+                    // Automatically play music after opening
+                    audio.play();
+                }, 100); // A small delay to ensure the animations flow nicely
+            });
+
+
+            // --- Music Player Logic ---
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = document.getElementById('progress-container');
+            const currentTimeEl = document.getElementById('current-time');
+            const durationEl = document.getElementById('duration');
+
+            function togglePlay() {
+                if (audio.paused) audio.play();
+                else audio.pause();
+            }
+
+            audio.addEventListener('play', () => {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            });
+
+            audio.addEventListener('pause', () => {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            });
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            audio.addEventListener('timeupdate', () => {
+                const { duration, currentTime } = audio;
+                if(duration) {
+                    progressBar.style.width = `${(currentTime / duration) * 100}%`;
+                    currentTimeEl.textContent = formatTime(currentTime);
+                }
+            });
+
+            audio.addEventListener('loadedmetadata', () => {
+                durationEl.textContent = formatTime(audio.duration);
+            });
+            
+            progressContainer.addEventListener('click', (e) => {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                audio.currentTime = (clickX / width) * audio.duration;
+            });
+
+            playPauseBtn.addEventListener('click', togglePlay);
+        });
+    </script>
+</body>
+</html>
