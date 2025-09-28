@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Yasaman 💚</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font: Metropolis -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metropolis:wght@300;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Define Metropolis font from a reliable source if Google Fonts doesn't work well */
+        @import url('https://fonts.cdnfonts.com/css/metropolis-2');
+        body {
+            font-family: 'Metropolis', sans-serif;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        .font-light { font-weight: 300; }
+        .font-bold { font-weight: 700; }
+        .font-extrabold { font-weight: 800; }
+
+        /* Background Styling */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('1758871477103 copy.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(12px) brightness(0.8);
+            transform: scale(1.1);
+            z-index: -1;
+        }
+
+        /* --- Envelope Styles --- */
+        .envelope-wrapper {
+            cursor: pointer;
+            perspective: 1000px;
+        }
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #5d3a9b; /* A nice purple */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: transform 0.6s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .envelope-wrapper:hover .envelope {
+            transform: translateY(-10px) rotateX(10deg);
+        }
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #6c44b3; /* Slightly lighter purple */
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            transition: transform 0.8s ease-in-out;
+            z-index: 3;
+        }
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #5d3a9b;
+            border-radius: 0 0 10px 10px;
+            z-index: 1;
+        }
+        .envelope-letter {
+            position: absolute;
+            top: 10px;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background: #36186a;
+            border-radius: 5px;
+            z-index: 2;
+            transition: transform 0.8s 0.2s ease-in-out;
+        }
+
+        /* Opening Animation */
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        .envelope-wrapper.open .envelope-letter {
+            transform: translateY(-220px);
+        }
+        .envelope-wrapper.open {
+            animation: fadeOut 1s 0.8s forwards;
+        }
+
+        /* Page & Element Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.9); visibility: hidden; }
+        }
+        #page1 { animation: fadeIn 1.5s ease-out; }
+        #page2 > * {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        #page2 .content-wrapper { animation-delay: 0.2s; }
+        #page2 .footer { animation-delay: 0.4s; }
+
+
+        /* Glassmorphism Effect for Music Player */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        /* Custom Timeline Slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #90ee90; /* Light Green */
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #5d3a9b;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #90ee90;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #5d3a9b;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="background-container"></div>
+
+    <!-- Page 1: The Envelope -->
+    <div id="page1" class="w-full h-full flex flex-col items-center justify-center">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body"></div>
+                <div class="envelope-letter"></div>
+                <!-- Text is now inside the envelope and centered -->
+                <div class="absolute inset-0 flex items-center justify-center z-[5]">
+                    <p class="mt-12 text-2xl font-bold tracking-wider" style="text-shadow: 0 0 10px rgba(0,0,0,0.5);">💜 تقدیم با عشق 💚</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: The Birthday Card & Music Player -->
+    <div id="page2" class="hidden w-full h-full flex flex-col items-center justify-center p-4 text-center">
+        
+        <div class="content-wrapper">
+            <!-- Header -->
+            <h1 class="text-2xl md:text-3xl font-extrabold mb-6 whitespace-nowrap" style="text-shadow: 0 2px 15px rgba(144, 238, 144, 0.5);">
+                💚 Happy Birthday Yasaman 💚
+            </h1>
+            
+            <!-- Music Player -->
+            <div class="music-player glass-card w-full max-w-xs rounded-2xl p-5 mx-auto">
+                <img id="cover-art" src="Male Man Bash.jpg" alt="Cover Art" class="w-full h-auto rounded-lg mb-5 shadow-lg shadow-black/30 aspect-square object-cover">
+                <div class="text-right">
+                    <h2 id="song-title" class="text-xl font-bold">Male Man Bash</h2>
+                    <p id="artist-name" class="text-sm font-light text-gray-300">Omid</p>
+                </div>
+                <div class="mt-5">
+                    <input type="range" id="timeline" class="w-full" value="0" step="1">
+                    <div class="flex justify-between text-xs font-light mt-1 text-gray-400">
+                        <span id="current-time">0:00</span>
+                        <span id="total-time">0:00</span>
+                    </div>
+                </div>
+                <div class="mt-5 flex items-center justify-center">
+                    <button id="play-pause-btn" class="w-14 h-14 bg-green-400/80 text-purple-900 rounded-full flex items-center justify-center shadow-lg hover:bg-green-400 transition-all duration-300">
+                        <!-- Play Icon -->
+                        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                        </svg>
+                        <!-- Pause Icon -->
+                        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-pause-fill hidden" viewBox="0 0 16 16">
+                            <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer font-light absolute bottom-4 text-sm text-gray-300">From Omid</p>
+        <audio id="audio-player" src="Male Man Bash.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        // DOM Elements
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const envelopeWrapper = document.querySelector('.envelope-wrapper');
+        const audio = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const timeline = document.getElementById('timeline');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalTimeEl = document.getElementById('total-time');
+
+        // --- Page Transition Logic ---
+        envelopeWrapper.addEventListener('click', () => {
+            // Add 'open' class to trigger animations
+            envelopeWrapper.classList.add('open');
+            
+            // Play audio after a short delay to sync with animation
+            setTimeout(() => {
+                audio.play().catch(error => {
+                    // Autoplay was prevented.
+                    console.error("Autoplay was prevented by the browser:", error);
+                });
+            }, 800);
+
+            // Switch pages after the animation is mostly done
+            setTimeout(() => {
+                page1.style.display = 'none';
+                page2.style.display = 'flex';
+            }, 1200); 
+        });
+
+        // --- Music Player Logic ---
+        function togglePlayPause() {
+            // Check the audio's paused state directly for a more robust solution
+            if (audio.paused) {
+                audio.play().catch(error => console.error("Error playing the audio:", error));
+            } else {
+                audio.pause();
+            }
+        }
+        
+        audio.addEventListener('play', () => {
+            // Update UI for playing state
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+            playPauseBtn.classList.remove('bg-green-400/80');
+            playPauseBtn.classList.add('bg-purple-400/80');
+        });
+
+        audio.addEventListener('pause', () => {
+            // Update UI for paused state
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+            // FIX: The original code had a typo here. Corrected to use classList.
+            playPauseBtn.classList.remove('bg-purple-400/80');
+            playPauseBtn.classList.add('bg-green-400/80');
+        });
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        
+        // --- Timeline Logic ---
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Update timeline as music plays
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            timeline.value = progress;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        // Set total time when metadata is loaded
+        audio.addEventListener('loadedmetadata', () => {
+            timeline.max = 100; // Percentage based
+            totalTimeEl.textContent = formatTime(audio.duration);
+        });
+
+        // Seek functionality
+        timeline.addEventListener('input', () => {
+            const seekTime = (timeline.value / 100) * audio.duration;
+            audio.currentTime = seekTime;
+        });
+
+    </script>
+</body>
+</html>
+
